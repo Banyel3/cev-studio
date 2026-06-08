@@ -4,6 +4,7 @@ import { LoginForm } from "./login-form";
 import { getSupabaseAdmin, type Submission } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Wordmark } from "@/components/ui/wordmark";
+import { MessageDialog } from "@/components/admin/message-dialog";
 
 export const metadata: Metadata = {
   title: "Admin — cev.studio",
@@ -86,7 +87,15 @@ export default async function AdminPage() {
                     </a>
                   </td>
                   <td className="max-w-md px-5 py-4 text-muted">
-                    <p className="whitespace-pre-wrap">{s.message}</p>
+                    <p className="line-clamp-2 whitespace-pre-wrap">
+                      {s.message}
+                    </p>
+                    <div className="mt-2">
+                      <MessageDialog
+                        submission={s}
+                        formattedDate={dateFmt.format(new Date(s.created_at))}
+                      />
+                    </div>
                   </td>
                 </tr>
               ))}
