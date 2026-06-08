@@ -1,0 +1,28 @@
+import { createClient } from "@supabase/supabase-js";
+
+/**
+ * Server-only Supabase client using the service-role key.
+ * Never import this from a Client Component — the key must stay on the server.
+ */
+export function getSupabaseAdmin() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!url || !key) {
+    throw new Error(
+      "Missing Supabase env vars (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY).",
+    );
+  }
+
+  return createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+}
+
+export type Submission = {
+  id: string;
+  name: string;
+  email: string;
+  message: string;
+  created_at: string;
+};

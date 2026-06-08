@@ -1,7 +1,6 @@
 import { Glow } from "@/components/ui/glow";
 import { GradientText } from "@/components/ui/gradient-text";
-import { Button } from "@/components/ui/button";
-import { Field } from "@/components/ui/field";
+import { ContactForm } from "@/components/contact-form";
 import { SERVICES } from "@/lib/content";
 
 export function Hero() {
@@ -47,24 +46,7 @@ export function Hero() {
               Tell us what you&apos;re making — we reply within 48 hours.
             </p>
 
-            <form className="mt-6 space-y-4">
-              <Field label="Name" name="name" placeholder="Ada Lovelace" />
-              <Field
-                label="Email"
-                name="email"
-                type="email"
-                placeholder="ada@studio.com"
-              />
-              <Field
-                label="Message"
-                name="message"
-                multiline
-                placeholder="A web app for…"
-              />
-              <Button type="submit" className="w-full">
-                Send message →
-              </Button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </div>
