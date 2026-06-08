@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/ui/reveal";
 import { SERVICES } from "@/lib/content";
 
 export function Services() {
@@ -12,9 +13,10 @@ export function Services() {
         </h2>
 
         <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
-          {SERVICES.map((s) => (
-            <article
+          {SERVICES.map((s, i) => (
+            <Reveal
               key={s.title}
+              delay={i * 0.08}
               className="group bg-bg p-8 transition-colors duration-300 hover:bg-surface md:p-10"
             >
               <span className="aurora-text font-mono text-sm font-medium">
@@ -26,7 +28,7 @@ export function Services() {
               <p className="mt-3 max-w-sm leading-relaxed text-muted">
                 {s.blurb}
               </p>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>

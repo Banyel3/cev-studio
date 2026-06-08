@@ -1,4 +1,5 @@
 import { Glow } from "@/components/ui/glow";
+import { Reveal } from "@/components/ui/reveal";
 
 export function Approach() {
   return (
@@ -8,7 +9,7 @@ export function Approach() {
     >
       <Glow className="-bottom-48 left-1/2 h-[32rem] w-[42rem] -translate-x-1/2 opacity-20" />
 
-      <div className="relative z-10 mx-auto max-w-4xl px-6 py-24 text-center md:py-36">
+      <Reveal className="relative z-10 mx-auto max-w-4xl px-6 py-24 text-center md:py-36">
         <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted">
           How we work
         </p>
@@ -26,7 +27,7 @@ export function Approach() {
         >
           Start a project →
         </a>
-      </div>
+      </Reveal>
     </section>
   );
 }

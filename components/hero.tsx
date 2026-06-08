@@ -1,5 +1,6 @@
 import { Glow } from "@/components/ui/glow";
 import { GradientText } from "@/components/ui/gradient-text";
+import { Reveal } from "@/components/ui/reveal";
 import { ContactForm } from "@/components/contact-form";
 import { SERVICES } from "@/lib/content";
 
@@ -11,7 +12,7 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-16 px-6 lg:grid-cols-[1.05fr_0.95fr]">
         {/* Pitch */}
-        <div>
+        <Reveal>
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted">
             A digital studio
           </p>
@@ -34,11 +35,14 @@ export function Hero() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
 
         {/* Contact form — the hero */}
-        <div id="contact" className="scroll-mt-28">
-          <div className="rounded-2xl border border-border bg-surface/80 p-6 shadow-2xl shadow-black/40 backdrop-blur-sm md:p-8">
+        <Reveal delay={0.12} className="scroll-mt-28">
+          <div
+            id="contact"
+            className="rounded-2xl border border-border bg-surface/80 p-6 shadow-2xl shadow-black/40 backdrop-blur-sm md:p-8"
+          >
             <h2 className="text-xl font-semibold tracking-tight">
               Start a project
             </h2>
@@ -48,7 +52,7 @@ export function Hero() {
 
             <ContactForm />
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
