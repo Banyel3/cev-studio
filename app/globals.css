@@ -1,26 +1,107 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Canvas */
+  --color-bg: #08080b;
+  --color-surface: #0e0e12;
+  --color-elevated: #14141a;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Text */
+  --color-fg: #fafafa;
+  --color-muted: #a1a1aa;
+  --color-faint: #71717a;
+
+  /* Aurora accent (magenta -> orange -> violet) */
+  --color-aurora-1: #ff2d9b;
+  --color-aurora-2: #ff8a3d;
+  --color-aurora-3: #8b5cf6;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --aurora: linear-gradient(
+    115deg,
+    var(--color-aurora-1),
+    var(--color-aurora-2),
+    var(--color-aurora-3)
+  );
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-aurora-3);
+  color: #fff;
+}
+
+/* Aurora gradient text */
+.aurora-text {
+  background: var(--aurora);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Aurora gradient fill (buttons, rules) */
+.aurora-fill {
+  background: var(--aurora);
+}
+
+/* Large blurred glow blob — decorative, non-interactive */
+.glow {
+  position: absolute;
+  border-radius: 9999px;
+  background: var(--aurora);
+  filter: blur(90px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Subtle dotted grid backdrop */
+.grid-backdrop {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+/* Slow drifting glow */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -3%, 0) scale(1.08);
+  }
+}
+
+.glow-drift {
+  animation: drift 14s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .glow-drift {
+    animation: none;
+  }
 }
